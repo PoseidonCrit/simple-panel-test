@@ -23,9 +23,14 @@
     'use strict';
 
     // --- Global State Variables ---
-    // These variables are declared here so they can be accessed by functions
-    // loaded from the required modules (e.g., panel.js needs testPanelElement).
-    let testPanelElement = null; // Reference to the main panel DOM element
+    // These variables are declared here *without* 'let', 'const', or 'var'
+    // so they are accessible to functions loaded from the required modules
+    // within this same IIFE scope.
+    testPanelElement = null; // Reference to the main panel DOM element
+
+    // Note: Other variables like config, undoStack, etc., would also be
+    // declared here without 'let', 'const', or 'var' in the full script.
+
 
     // --- Run Initialization ---
     // Use a simple DOMContentLoaded listener to wait for the basic page structure

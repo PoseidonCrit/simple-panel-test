@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Simple Panel Test (Modular)
 // @namespace    http://your-namespace.example.com
-// @version      1.2 // New version for modular structure
+// @version      1.5 // Incrementing version for this fix
 // @description  A simple test script (modularized) to check panel creation, menu command toggling, and basic input interaction.
 // @author       Your Name
 // @match        https://ygoprodeck.com/pack-sim/*
@@ -17,19 +17,31 @@
 //
 // ==/UserScript==
 
+// --- Global State Variables ---
+// Declare these variables using 'var' at the VERY TOP LEVEL of the script,
+// OUTSIDE of any function or IIFE. This ensures they are in the scope
+// accessible to all @require'd files when Tampermonkey concatenates and runs them.
+var testPanelElement = null; // Reference to the main panel DOM element
+
+// Note: In the full Pack Filler Pro script, you would declare
+// var config = {};
+// var undoStack = [];
+// var redoStack = [];
+// var isFilling = false;
+// var panelElement = null;
+// here as well.
+
+
 // This is the main entry point of the script.
 // The code from the @require directives will be loaded before this IIFE runs.
+// This IIFE contains the primary initialization logic that uses the functions
+// and variables defined in the @require'd files and the global variables.
 (function() {
     'use strict';
 
-    // --- Global State Variables ---
-    // These variables are declared here *without* 'let', 'const', or 'var'
-    // so they are accessible to functions loaded from the required modules
-    // within this same IIFE scope.
-    testPanelElement = null; // Reference to the main panel DOM element
+    console.log('Simple Panel Test (Modular): Main script IIFE started.');
 
-    // Note: Other variables like config, undoStack, etc., would also be
-    // declared here without 'let', 'const', or 'var' in the full script.
+    // The global variable testPanelElement is now declared outside this IIFE.
 
 
     // --- Run Initialization ---
@@ -44,5 +56,7 @@
     // addTestPanelCSS is from src/ui-css.js,
     // panelHTML is from src/panel-html.js.
     // These are available in this scope because they are loaded via @require.
+
+    console.log('Simple Panel Test (Modular): Main script IIFE finished.');
 
 })();
